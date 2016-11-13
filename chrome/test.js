@@ -46,17 +46,20 @@ Array.prototype.forEach.call(comments, function(comment) {
 	//console.log(comment);
 	// Grab element, done with comment
 	// Grab username
-	var username = comment.getElementsByClassName("comment-renderer-header")[0].getElementsByTagName("a")[0].textContent;
+	var header = comment.getElementsByClassName("comment-renderer-header")[0];
+	var username = header.getElementsByTagName("a")[0].textContent;
 	// Check user name
 	console.log(username);
+
 	var rate = rating();
-	// If(rating >= threshold}
+	var text = comment.getElementsByClassName("comment-renderer-text-content")[0];
+
+	addRating(header, rate);
+	addReportBTN(header, username);
+
 	if(rate >= threshold){
 		// Black Out comment for now
-		var text = comment.getElementsByClassName("comment-renderer-text-content")[0];
 		changeText(text);
-		//comment.style.color = "black";
-		//console.log("Set background to black");
 	}
 });
 
@@ -96,16 +99,31 @@ function changeText (text){
 	// Add a listener to the button
 }
 
+function addRating (text, r){
+	var rate = document.createElement("span");
+	rate.textContent = "	User's current rating:	" + r +" ";
+	rate.style.color = "green";
+	text.appendChild(rate);
+}
+function addReportBTN (text, username){
+	var report = document.createElement("input");
+	report.type = "button";
+	report.value = "Rate User";
+	report.onclick = function (){
+		var rateForm = document.createElement("form");
+		rateForm.name = "Rate Form for" + username;
+		rateForm.method = "post";
+		//rateForm.action = "";
+		var dropdown = document.createElement("input");
+		dropdown.type = "number";
+		dropdown.name = "rate";
+		var submit = document.createElement("input");
+		submit.type = "submit";
+		submit.value = "Submit";
 
-// Add a button handler
-function buttonHandler(text){
-	if(this.value=="View Anyways") {
-		text.style.visibility = "visible";
-		this.value="Hide Comment";
-	}
-	else{
-		text.style.visibility = "hidden";
-		this.value="View Anyways";
-	}
-	//text.getElementsByTagName("INPUT")[0].textContent = "Hide comment";
+		rateForm.appendChild(dropdown);
+		rateForm.appendChild(submit);
+		text.appendChild(rateForm);
+	};
+	text.appendChild(report);
 }
