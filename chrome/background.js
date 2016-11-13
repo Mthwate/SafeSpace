@@ -1,6 +1,6 @@
 var lambdaUrl = "https://1pvxwe83ta.execute-api.us-east-1.amazonaws.com/prod/";
 
-var threshold = 3;
+var threshold = -1;
 
 var getRating = function(user, funct) {
 	var xhttp = new XMLHttpRequest();
@@ -79,6 +79,7 @@ function addRating (text, r){
 	rate.style.color = "green";
 	text.appendChild(rate);
 }
+
 function addReportBTN (text, username){
 	var report = document.createElement("input");
 	report.type = "button";
@@ -89,12 +90,16 @@ function addReportBTN (text, username){
 		rateForm.method = "post";
 		//rateForm.action = report(;							// This thing right here
 
+		var desc = document.createElement("div");
+		desc.textContent = "Please enter a rating for the user (Good:1 to Bad:5)";
+		rateForm.appendChild(desc);
+
 		var dropdown = document.createElement("input");
 		dropdown.type = "number";
 		dropdown.name = "rate";
-		dropdown.onchange = function(){
-			if(this.value < 1) this.value = 1;
-			if(this.value > 5) this.value = 5;
+		dropdown.onchange = function () {
+			if (this.value < 1) this.value = 1;
+			if (this.value > 5) this.value = 5;
 		};
 		var submit = document.createElement("input");
 		submit.type = "submit";
@@ -132,7 +137,7 @@ var loopComments = function(comments) {
 				addReportBTN(header, username);
 
 				//if(rate == undefined | rate == null) rate = 1;
-				if (rate >= threshold) {
+				if (num >= threshold) {
 					// Black Out comment for now
 					changeText(text);
 				}
