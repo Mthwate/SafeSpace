@@ -20,7 +20,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["background.js","popup.js"]
+      "js": ["common.js", "background.js","popup.js"]
     }
   ]
 }
