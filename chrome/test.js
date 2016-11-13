@@ -1,4 +1,4 @@
-var lambdaUrl = "https://lrceivshje.execute-api.us-east-1.amazonaws.com/prod/"
+var lambdaUrl = "https://lrceivshje.execute-api.us-east-1.amazonaws.com/prod/";
 
 var comments = document.body.getElementsByClassName("comment-renderer");
 
