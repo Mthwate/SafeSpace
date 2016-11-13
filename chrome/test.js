@@ -38,8 +38,10 @@ function changeText (text){
 	//text.style.display = "none";	// Hide the user's text
 	text.style.visibility = "hidden";
 	// Add text inline
-	var warningText = document.createTextNode("User has bad rating...");
-	//warningText.style.color = "red";
+	//var warningText = document.createTextNode("User has bad rating...");
+	var warningText = document.createElement("div");
+	warningText.style.color = "red";
+	warningText.textContent  = "User has a bad rating!";
 	var btn = document.createElement("input");
 	btn.type = "button";
 	btn.onclick = function (){
