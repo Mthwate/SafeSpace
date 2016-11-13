@@ -51,20 +51,24 @@ Array.prototype.forEach.call(comments, function(comment) {
 	// Check user name
 	console.log(username);
 
-	var rate = rating();
+	//var rate = rating();
+	var rate = getRating(username, function(num){
+		//if(rate == undefined | rate == null) rate = 1;
+		if(rate >= threshold){
+		// Black Out comment for now
+		changeText(text);
+	}});
 	var text = comment.getElementsByClassName("comment-renderer-text-content")[0];
 
 	addRating(header, rate);
 	addReportBTN(header, username);
 
-	if(rate >= threshold){
-		// Black Out comment for now
-		changeText(text);
-	}
+
 });
 
-function rating (){
+function rating (num){
 	//console.log("Inside the rating function");
+
 	return 5;
 }
 
@@ -113,10 +117,15 @@ function addReportBTN (text, username){
 		var rateForm = document.createElement("form");
 		rateForm.name = "Rate Form for" + username;
 		rateForm.method = "post";
-		//rateForm.action = "";
+		//rateForm.action = report(;
+
 		var dropdown = document.createElement("input");
 		dropdown.type = "number";
 		dropdown.name = "rate";
+		dropdown.onchange = function(){
+			if(this.value < 1) this.value = 1;
+			if(this.value > 5) this.value = 5;
+		};
 		var submit = document.createElement("input");
 		submit.type = "submit";
 		submit.value = "Submit";
