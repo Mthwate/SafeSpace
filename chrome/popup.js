@@ -5,8 +5,8 @@ $(document).ready(function () {
     console.log(comments);
 
     var login = function (user, pass, funct) {
-        localStorage[toString] = user;
-        localStorage[toString] = pass;
+        localStorage.user = user;
+        localStorage.pass = pass;
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", lambdaUrl + "login", true);
         xhttp.send('{ "user" : "' + user + '", "pass" : "' + pass + '" }');
@@ -16,8 +16,8 @@ $(document).ready(function () {
     };
 
     var register = function (user, pass, funct) {
-        localStorage[toString] = user;
-        localStorage[toString] = pass;
+        localStorage.user = user;
+        localStorage.pass = pass;
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", lambdaUrl + "register", true);
         xhttp.send('{ "user" : "' + user + '", "pass" : "' + pass + '" }');
