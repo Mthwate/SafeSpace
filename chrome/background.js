@@ -85,29 +85,32 @@ function addReportBTN (text, username){
 	report.type = "button";
 	report.value = "Rate User";
 	report.onclick = function (){
-		var rateForm = document.createElement("form");
-		rateForm.name = "Rate Form for" + username;
-		rateForm.method = "post";
-		//rateForm.action = report(;							// This thing right here
+      if(!report.classList.contains("safeSpaceRated")) {
+        var rateForm = document.createElement("form");
+        rateForm.name = "Rate Form for" + username;
+        rateForm.method = "post";
+        //rateForm.action = report(;							// This thing right here
 
-		var desc = document.createElement("div");
-		desc.textContent = "Please enter a rating for the user (Good:1 to Bad:5)";
-		rateForm.appendChild(desc);
+        var desc = document.createElement("div");
+        desc.textContent = "Please enter a rating for the user (Good:1 to Bad:5)";
+        rateForm.appendChild(desc);
 
-		var dropdown = document.createElement("input");
-		dropdown.type = "number";
-		dropdown.name = "rate";
-		dropdown.onchange = function () {
-			if (this.value < 1) this.value = 1;
-			if (this.value > 5) this.value = 5;
-		};
-		var submit = document.createElement("input");
-		submit.type = "submit";
-		submit.value = "Submit";
+        var dropdown = document.createElement("input");
+        dropdown.type = "number";
+        dropdown.name = "rate";
+        dropdown.onchange = function () {
+          if (this.value < 1) this.value = 1;
+          if (this.value > 5) this.value = 5;
+        };
+        var submit = document.createElement("input");
+        submit.type = "submit";
+        submit.value = "Submit";
 
-		rateForm.appendChild(dropdown);
-		rateForm.appendChild(submit);
-		text.appendChild(rateForm);
+        rateForm.appendChild(dropdown);
+        rateForm.appendChild(submit);
+        text.appendChild(rateForm);
+        report.classList.add("safeSpaceRated");
+      }
 	};
 	text.appendChild(report);
 }
