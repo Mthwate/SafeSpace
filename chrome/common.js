@@ -28,12 +28,16 @@ var register = function(user, pass, funct) {
 };
 
 var report = function(targetUser, rating, comment, funct) {
-	var srcUser = localStorage.user;
-	var pass = localStorage.pass;
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("POST", lambdaUrl + "report", true);
-	xhttp.send('{ "sourceuser" : "' + srcUser + '", "pass" : "' + pass + '", "targetuser" : "' + targetUser + '", "rating" : "' + rating + '", "comment" : "' + comment + '", }');
-	xhttp.onload = function () {
-		funct(xhttp.responseText == "true");
-	};
+	chrome.storage.sync.get(["user", "pass"], function (items) {
+		var srcUser = items.user;
+		var pass = items.pass;
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", lambdaUrl + "report", true);
+		var json = '{ "sourceuser" : "' + srcUser + '", "pass" : "' + pass + '", "targetuser" : "' + targetUser + '", "rating" : "' + rating + '", "comment" : "' + comment + '"}';
+		console.log(json);
+		xhttp.send(json);
+		xhttp.onload = function () {
+			funct(xhttp.responseText == "true");
+		};
+	});
 };

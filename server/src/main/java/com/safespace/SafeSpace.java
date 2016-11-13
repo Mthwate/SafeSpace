@@ -55,13 +55,13 @@ public class SafeSpace {
 		Connection con = getDb();
 		try {
 			PreparedStatement statement = con.prepareStatement("select password from users where username = ?");
-			statement.setString(1, request.source);
+			statement.setString(1, request.sourceuser);
 			statement.execute();
 			ResultSet resultSet = statement.getResultSet();
 			if (resultSet.next() && request.pass.equals(resultSet.getString(1))) {
 				PreparedStatement statement2 = con.prepareStatement("insert into ratings values (?,?,?,?)");
-				statement2.setString(1, request.source);
-				statement2.setString(2, request.target);
+				statement2.setString(1, request.sourceuser);
+				statement2.setString(2, request.targetuser);
 				statement2.setInt(3, request.rating);
 				statement2.setString(4, request.comment);
 				return statement2.execute();

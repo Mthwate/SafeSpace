@@ -1,4 +1,4 @@
-var threshold = -1;
+var threshold = 3;
 
 function changeText (text){
 	//text.style.display = "none";	// Hide the user's text
@@ -64,7 +64,7 @@ function addReportBTN (text, username){
         submit.type = "button";
         submit.value = "Submit";
 
-        submit.onclick = function(){report(username, dropdown.value, text.parentNode.childNodes[1], function(success){
+        submit.onclick = function(){report(username, dropdown.value, "", function(success){
           if(success){
             text.removeChild(rateForm);
             console.log("Success in sending info");

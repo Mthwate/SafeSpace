@@ -5,11 +5,11 @@ package com.safespace;
  */
 public class RequestReport {
 
-	public String source;
+	public String sourceuser;
 
 	public String pass;
 
-	public String target;
+	public String targetuser;
 
 	public int rating;
 
