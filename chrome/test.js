@@ -38,7 +38,8 @@ function changeText (text){
 	//text.style.display = "none";	// Hide the user's text
 	text.style.visibility = "hidden";
 	// Add text inline
-	//var warningText = document.createTextNode("User has bad rating...");
+	var warningText = document.createTextNode("User has bad rating...");
+	//warningText.style.color = "red";
 	var btn = document.createElement("input");
 	btn.type = "button";
 	btn.onclick = function (){
@@ -56,9 +57,9 @@ function changeText (text){
 	//text.insertAdjacentHTML('afterend', "<input type=\"button\" onclick=\"buttonHandler(event.target)\" value=\"View Anyways\">");
 	//text.insertAdjacentHTML('afterend', btn.htmlText);
 
-	text.insertAdjacentHTML('afterend', "User has a bad rating...");
+	//text.insertAdjacentHTML('afterend', "User has a bad rating...");
+	text.parentNode.appendChild(warningText);
 	text.parentNode.appendChild(btn);
-	//text.parentNode.appendChild(warningText);
 	// Add a listener to the button
 }
 
