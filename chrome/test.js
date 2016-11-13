@@ -53,15 +53,17 @@ Array.prototype.forEach.call(comments, function(comment) {
 
 	//var rate = rating();
 	var rate = getRating(username, function(num){
+		var text = comment.getElementsByClassName("comment-renderer-text-content")[0];
+
+		addRating(header, num);
+		addReportBTN(header, username);
+
 		//if(rate == undefined | rate == null) rate = 1;
 		if(rate >= threshold){
 		// Black Out comment for now
 		changeText(text);
 	}});
-	var text = comment.getElementsByClassName("comment-renderer-text-content")[0];
 
-	addRating(header, rate);
-	addReportBTN(header, username);
 
 
 });
@@ -117,7 +119,7 @@ function addReportBTN (text, username){
 		var rateForm = document.createElement("form");
 		rateForm.name = "Rate Form for" + username;
 		rateForm.method = "post";
-		//rateForm.action = report(;
+		//rateForm.action = report(;							// This thing right here
 
 		var dropdown = document.createElement("input");
 		dropdown.type = "number";
