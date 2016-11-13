@@ -6,12 +6,12 @@
 - [x] Databases
   - [x] User
   - [x] Ratering
-- [ ] Server Logic
-  - [ ] Data Transfer
-    - [ ] Login/Register
-    - [ ] Rating
-    - [ ] Reporting
-    - [ ] Check Username
+- [x] Server Logic
+  - [x] Data Transfer
+    - [x] Login/Register
+    - [x] Rating
+    - [x] Reporting
+    - [x] Check Username
 - [ ] Extenion
   - [ ] Flaging
   - [x] Block comment
