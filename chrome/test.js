@@ -1,9 +1,38 @@
+var lambdaUrl = "https://lrceivshje.execute-api.us-east-1.amazonaws.com/prod/"
+
 var comments = document.body.getElementsByClassName("comment-renderer");
 
-var getUserRating = function(user, funct) {
+var getRating = function(user, funct) {
 	var xhttp = new XMLHttpRequest();
-	xhttp.open("POST", "https://lrceivshje.execute-api.us-east-1.amazonaws.com/prod/resource", true);
-	xhttp.send('{ "user": "' + user + '" }');
+	xhttp.open("POST", lambdaUrl + "getrating", true);
+	xhttp.send('{ "user" : "' + user + '" }');
+	xhttp.onload = function () {
+		funct(xhttp.responseText);
+	};
+};
+
+var login = function(user, pass, funct) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST", lambdaUrl + "login", true);
+	xhttp.send('{ "user" : "' + user + '", "pass" : "' + pass + '" }');
+	xhttp.onload = function () {
+		funct(xhttp.responseText);
+	};
+};
+
+var register = function(user, pass, funct) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST", lambdaUrl + "register", true);
+	xhttp.send('{ "user" : "' + user + '", "pass" : "' + pass + '" }');
+	xhttp.onload = function () {
+		funct(xhttp.responseText);
+	};
+};
+
+var report = function(srcUser, pass, targetUser, rating, comment, funct) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST", lambdaUrl + "register", true);
+	xhttp.send('{ "sourceuser" : "' + srcUser + '", "pass" : "' + pass + '", "targetuser" : "' + targetUser + '", "rating" : "' + rating + '", "comment" : "' + comment + '", }');
 	xhttp.onload = function () {
 		funct(xhttp.responseText);
 	};
