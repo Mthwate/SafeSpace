@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+	maven { url "https://clojars.org/repo" }
+}
+
+dependencies {
+	compile "com.amazonaws:aws-lambda-java-core:1.1.0"
+	compile "com.amazonaws:aws-lambda-java-events:1.1.0"
+	compile "postgresql:postgresql:9.3-1102.jdbc41"
+}
+
+task buildZip(type: Zip) {
+	from compileJava
+	from processResources
+	into('lib') {
+		from configurations.runtime
+	}
+}
+
+build.dependsOn buildZip
