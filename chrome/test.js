@@ -40,7 +40,7 @@ var report = function(srcUser, pass, targetUser, rating, comment, funct) {
 
 
 
-var threshold = 3;
+var threshold = -1;
 
 Array.prototype.forEach.call(comments, function(comment) {
 	//console.log(comment);
@@ -59,7 +59,7 @@ Array.prototype.forEach.call(comments, function(comment) {
 		addReportBTN(header, username);
 
 		//if(rate == undefined | rate == null) rate = 1;
-		if(rate >= threshold){
+		if(num >= threshold){
 		// Black Out comment for now
 		changeText(text);
 	}});
@@ -67,12 +67,6 @@ Array.prototype.forEach.call(comments, function(comment) {
 
 
 });
-
-function rating (num){
-	//console.log("Inside the rating function");
-
-	return 5;
-}
 
 function changeText (text){
 	//text.style.display = "none";	// Hide the user's text
@@ -121,12 +115,16 @@ function addReportBTN (text, username){
 		rateForm.method = "post";
 		//rateForm.action = report(;							// This thing right here
 
+		var desc = document.createElement("div");
+		desc.textContent = "Please enter a rating for the user (Good:1 to Bad:5)";
+		rateForm.appendChild(desc);
+
 		var dropdown = document.createElement("input");
 		dropdown.type = "number";
 		dropdown.name = "rate";
-		dropdown.onchange = function(){
-			if(this.value < 1) this.value = 1;
-			if(this.value > 5) this.value = 5;
+		dropdown.onchange = function () {
+			if (this.value < 1) this.value = 1;
+			if (this.value > 5) this.value = 5;
 		};
 		var submit = document.createElement("input");
 		submit.type = "submit";
