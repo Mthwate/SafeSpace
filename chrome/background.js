@@ -29,7 +29,9 @@ var register = function(user, pass, funct) {
 	};
 };
 
-var report = function(srcUser, pass, targetUser, rating, comment, funct) {
+var report = function(targetUser, rating, comment, funct) {
+    var srcUser = localStorage.user;
+    var pass = localStorage.pass;
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("POST", lambdaUrl + "register", true);
 	xhttp.send('{ "sourceuser" : "' + srcUser + '", "pass" : "' + pass + '", "targetuser" : "' + targetUser + '", "rating" : "' + rating + '", "comment" : "' + comment + '", }');
@@ -89,7 +91,6 @@ function addReportBTN (text, username){
         var rateForm = document.createElement("form");
         rateForm.name = "Rate Form for" + username;
         rateForm.method = "post";
-        //rateForm.action = report(;							// This thing right here
 
         var desc = document.createElement("div");
         desc.textContent = "Please enter a rating for the user (Good:1 to Bad:5)";
@@ -105,6 +106,13 @@ function addReportBTN (text, username){
         var submit = document.createElement("input");
         submit.type = "submit";
         submit.value = "Submit";
+
+        rateForm.action = this.report(username, dropdown.value, text.parentNode.childNodes[1], function(success){
+          if(success){
+            text.removeChild(rateForm);
+            console.log("Success in sending info");
+          }
+        });							// This thing right here
 
         rateForm.appendChild(dropdown);
         rateForm.appendChild(submit);
