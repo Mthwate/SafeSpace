@@ -44,9 +44,9 @@ function addReportBTN (text, username){
 	rate.value = "Rate User";
 	rate.onclick = function (){
       if(!rate.classList.contains("safeSpaceRated")) {
-        var rateForm = document.createElement("form");
-        rateForm.name = "Rate Form for" + username;
-        rateForm.method = "post";
+        var rateForm = document.createElement("div");
+        //rateForm.name = "Rate Form for" + username;
+        //rateForm.method = "post";
 
         var desc = document.createElement("div");
         desc.textContent = "Please enter a rating for the user (Good:1 to Bad:5)";
@@ -55,21 +55,22 @@ function addReportBTN (text, username){
         var dropdown = document.createElement("input");
         dropdown.type = "number";
         dropdown.name = "rate";
+        dropdown.defaultValue = 1;
         dropdown.onchange = function () {
           if (this.value < 1) this.value = 1;
           if (this.value > 5) this.value = 5;
         };
         var submit = document.createElement("input");
-        submit.type = "submit";
+        submit.type = "button";
         submit.value = "Submit";
 
-        submit.onlcick = report(username, dropdown.value, text.parentNode.childNodes[1], function(success){
+        submit.onclick = function(){report(username, dropdown.value, text.parentNode.childNodes[1], function(success){
           if(success){
             text.removeChild(rateForm);
             console.log("Success in sending info");
           }
-          else{console.log("didn't send")};
-        });							// This thing right here
+          else{console.log("didn't send")}
+        })};							// This thing right here
 
         rateForm.appendChild(dropdown);
         rateForm.appendChild(submit);
