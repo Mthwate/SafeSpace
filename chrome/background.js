@@ -83,11 +83,11 @@ function addRating (text, r){
 }
 
 function addReportBTN (text, username){
-	var report = document.createElement("input");
-	report.type = "button";
-	report.value = "Rate User";
-	report.onclick = function (){
-      if(!report.classList.contains("safeSpaceRated")) {
+	var rate = document.createElement("input");
+	rate.type = "button";
+	rate.value = "Rate User";
+	rate.onclick = function (){
+      if(!rate.classList.contains("safeSpaceRated")) {
         var rateForm = document.createElement("form");
         rateForm.name = "Rate Form for" + username;
         rateForm.method = "post";
@@ -107,20 +107,21 @@ function addReportBTN (text, username){
         submit.type = "submit";
         submit.value = "Submit";
 
-        rateForm.action = this.report(username, dropdown.value, text.parentNode.childNodes[1], function(success){
+        submit.onlcick = report(username, dropdown.value, text.parentNode.childNodes[1], function(success){
           if(success){
             text.removeChild(rateForm);
             console.log("Success in sending info");
           }
+          else{console.log("didn't send")};
         });							// This thing right here
 
         rateForm.appendChild(dropdown);
         rateForm.appendChild(submit);
         text.appendChild(rateForm);
-        report.classList.add("safeSpaceRated");
+        rate.classList.add("safeSpaceRated");
       }
 	};
-	text.appendChild(report);
+	text.appendChild(rate);
 }
 
 
