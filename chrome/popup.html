@@ -1,57 +1,33 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
+
 <html>
   <head>
-    <title>Getting Started Extension's Popup</title>
+    <title>Popup</title>
     <style>
       body {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
       }
       #status {
-        /* avoid an excessively wide status text */
         white-space: pre;
         text-overflow: ellipsis;
         overflow: hidden;
         max-width: 400px;
       }
     </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
-      <script src="jquery-3.1.1.min.js"></script>
-              
-    <script src="popup.js"></script>
   </head>
   <body>
     <div id="status"></div>
-      <form action="action_page.php">
           <div class="imgcontainer">
           </div>
           <div class="container">
               <label><b>Username</b></label>
               <input type="text" placeholder="Enter Username" name="uname" required>
-
               <label><b>Password</b></label>
               <input type="password" placeholder="Enter Password" name="psw" required>
-
               <button type="submit" id="login" onclick="logingo">Login</button>
               <button type="submit" id="register" onclick="regigo">Register</button>
-          </div>
-          
-          <button class="container" style="background-color:#f1f1f1">
-              <!--<button type="button" class="cancelbtn">Cancel</button>-->
-           <button type ="button"style="background-color:#f1f1f1">Report</button>
-          </div>
-      </form>
+          </div>            
   </body>
 </html>
 
