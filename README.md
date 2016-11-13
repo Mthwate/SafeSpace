@@ -14,6 +14,6 @@
     - [x] Check Username
 - [ ] Extenion
   - [ ] Flaging
-  - [ ] Block comment
+  - [x] Block comment
   - [ ] Login/Register
   - [ ] Report
