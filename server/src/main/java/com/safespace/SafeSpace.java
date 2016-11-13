@@ -17,15 +17,15 @@ public class SafeSpace {
 		}
 	}
 
-	public int getRating(RequestUserRanking request, Context context) {
+	public float getRating(RequestUserRanking request, Context context) {
 		Connection con = getDb();
 		try {
-			PreparedStatement statement = con.prepareStatement("select sum(rating) from ratings where targetuser = ?");
+			PreparedStatement statement = con.prepareStatement("select avg(rating) from ratings where targetuser = ?");
 			statement.setString(1, request.user);
 			statement.execute();
 			ResultSet resultSet = statement.getResultSet();
 			if (resultSet.next()) {
-				return resultSet.getInt(1);
+				return resultSet.getFloat(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
