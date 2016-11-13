@@ -3,9 +3,9 @@
 
 
 
-- [ ] Databases
-  - [ ] User
-  - [ ] Ratering
+- [x] Databases
+  - [x] User
+  - [x] Ratering
 - [ ] Server Logic
   - [ ] Data Transfer
     - [ ] Login/Register
