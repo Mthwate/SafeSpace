@@ -3,16 +3,10 @@ console.log("going");
 $(document).ready(function () {
     var comments = $(".comment-renderer");
     console.log(comments);
-    var getRating = function (user, funct) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", lambdaUrl + "getrating", true);
-        xhttp.send('{ "user" : "' + user + '" }');
-        xhttp.onload = function () {
-            funct(xhttp.responseText);
-        };
-    };
 
     var login = function (user, pass, funct) {
+        localStorage[toString] = user;
+        localStorage[toString] = pass;
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", lambdaUrl + "login", true);
         xhttp.send('{ "user" : "' + user + '", "pass" : "' + pass + '" }');
@@ -22,18 +16,11 @@ $(document).ready(function () {
     };
 
     var register = function (user, pass, funct) {
+        localStorage[toString] = user;
+        localStorage[toString] = pass;
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", lambdaUrl + "register", true);
         xhttp.send('{ "user" : "' + user + '", "pass" : "' + pass + '" }');
-        xhttp.onload = function () {
-            funct(xhttp.responseText);
-        };
-    };
-
-    var report = function (srcUser, pass, targetUser, rating, comment, funct) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", lambdaUrl + "register", true);
-        xhttp.send('{ "sourceuser" : "' + srcUser + '", "pass" : "' + pass + '", "targetuser" : "' + targetUser + '", "rating" : "' + rating + '", "comment" : "' + comment + '", }');
         xhttp.onload = function () {
             funct(xhttp.responseText);
         };
@@ -57,12 +44,6 @@ $(document).ready(function () {
             //console.log("Set background to black");
         }
     });
-
-    function rating() {
-        //console.log("Inside the rating function");
-        return 5;
-    }
-
     function changeText(text) {
         //text.style.display = "none";	// Hide the user's text
         text.style.visibility = "hidden";
@@ -162,7 +143,9 @@ $(document).ready(function () {
     var f = document.getElementById("register");
     console.log("going3");
     if (f.onclick == "regigo") {
-        console.log("going4");
-     
+        
         f.onclick = register(f.getElementsByTagName("uname"), f.getElementsByTagName("psw"));
-    }})
+
+    }
+})
+
