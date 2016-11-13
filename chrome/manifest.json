@@ -8,7 +8,7 @@
     "<all_urls>"
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["background.js"]
     "persistent": false
   },
   "browser_action": {
