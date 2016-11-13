@@ -7,10 +7,14 @@
     "activeTab",
     "<all_urls>"
   ],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["background.js"]
+    }
+  ],
+
   "browser_action": {
     "default_title": "Make this page red"
   },
