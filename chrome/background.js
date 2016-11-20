@@ -1,6 +1,6 @@
 var threshold = 3;
 
-function changeText (text){
+function changeText(text){
 	//text.style.display = "none";	// Hide the user's text
 	text.style.visibility = "hidden";
 	// Add text inline
@@ -31,14 +31,14 @@ function changeText (text){
 	// Add a listener to the button
 }
 
-function addRating (text, r){
+function addRating(text, r){
 	var rate = document.createElement("span");
 	rate.textContent = "	User's current rating:	" + r +" ";
 	rate.style.color = "green";
 	text.appendChild(rate);
 }
 
-function addReportBTN (text, username){
+function addReportBTN(text, username){
 	var rate = document.createElement("input");
 	rate.type = "button";
 	rate.value = "Rate User";
@@ -81,15 +81,8 @@ function addReportBTN (text, username){
 	text.appendChild(rate);
 }
 
-
-
-
-
-
-
-var loopComments = function(comments) {
+function loopComments(comments) {
 	Array.prototype.forEach.call(comments, function(comment) {
-		//console.log(comment);
 		// Grab element, done with comment
 		// Grab username
 		if (!comment.classList.contains("safespacechecked")) {
@@ -98,14 +91,12 @@ var loopComments = function(comments) {
 			// Check user name
 			console.log(username);
 
-			//var rate = rating();
 			var rate = getRating(username, function (num) {
 				var text = comment.getElementsByClassName("comment-renderer-text-content")[0];
 
 				addRating(header, num);
 				addReportBTN(header, username);
 
-				//if(rate == undefined | rate == null) rate = 1;
 				if (num >= threshold) {
 					// Black Out comment for now
 					changeText(text);
@@ -116,7 +107,7 @@ var loopComments = function(comments) {
 		}
 
 	});
-};
+}
 
 
 
